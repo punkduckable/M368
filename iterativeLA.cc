@@ -2,7 +2,7 @@
 using namespace std;
 
 #include "iterativeLA.h"
-#include "matrix.h"
+#include "Matrix.h"
 
 //#define MONITOR
 
@@ -38,10 +38,10 @@ state jacobi(const Matrix& A, const Vector& b, Vector& x,
 
     // Check error tolerance
     xOld -= x;
-    double l2error = l2norm(xOld) / (l2norm(x)+1e-16);
+    double l2error = Norm::l2(xOld) / (Norm::l2(x)+1e-16);
 #ifdef MONITOR
     cout << "Iter " << iter+1 << ", l2-error " << l2error << endl;
-#endif    
+#endif
     if( l2error <= tol) {
       maxIter = iter+1;
       return SUCCESS;

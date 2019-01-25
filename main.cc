@@ -1,13 +1,32 @@
 #include <iostream>
 using namespace std;
 
+// Include Forward declarations
+#include "Forward_Declarations.h"
+
+// Include header files
+#include "Matrix.h"
+#include "Vector.h"
+#include "Permutation.h"
+#include "Norm.h"
 #include "iterativeLA.h"
 
-int main() {
+// Include source files
+#include "Matrix.cc"
+#include "Vector.cc"
+#include "Permutation.cc"
+#include "Norm.cc"
+#include "iterativeLA.cc"
+
+#include "iterativeLA.h"
+
+int main(void) {
+  // Prompt user for size of matrix
   int n;
   cout << "Enter size: " << flush;
   cin >> n;
-  
+
+  // Declare A, x, b
   Matrix A(n,n);
   Vector x(n);
   Vector b(n);
@@ -45,10 +64,9 @@ int main() {
     matVecMult(A,x,y);
     y -= b;
     cout << "The number of iterations is: " << maxIter << endl;
-    cout << "The max-norm of residual is: " << maxNorm(y) << endl;
+    cout << "The max-norm of residual is: " << Norm::max(y) << endl;
     cout << "The residual is: " << endl;
     cout << y << endl;
     return 0;
   }
 }
-
