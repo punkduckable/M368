@@ -1,7 +1,9 @@
 #if !defined(PERMUTATION_SOURCE)
 #define PERMUTATION_SOURCE
 
+#include "Forward_Declarations.h"
 #include "Permutation.h"
+#include "Vector.h"
 
 // Permutation ////////////////////////////////////////////////////////////////
 

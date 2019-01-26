@@ -1,6 +1,9 @@
 #if !defined(VECTOR_HEADER)
 #define VECTOR_HEADER
 
+#include <iostream>
+#include "Forward_Declarations.h"
+
 class Vector {
  private:
   int size;

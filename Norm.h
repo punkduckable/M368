@@ -1,7 +1,8 @@
 #if !defined NORM_HEADER
 #define NORM_HEADER
 
-#include "Norm.h"
+#include <math.h>
+
 
 namespace Norm {
   double l2(const Vector&);  // L2-norm of the vector

@@ -4,21 +4,19 @@ using namespace std;
 // Include Forward declarations
 #include "Forward_Declarations.h"
 
-// Include header files
+// Include Header files
+#include "iterativeLA.h"
 #include "Matrix.h"
+#include "Norm.h"
 #include "Vector.h"
 #include "Permutation.h"
-#include "Norm.h"
-#include "iterativeLA.h"
 
-// Include source files
+// Include Source files
+#include "iterativeLA.cc"
 #include "Matrix.cc"
+#include "Norm.cc"
 #include "Vector.cc"
 #include "Permutation.cc"
-#include "Norm.cc"
-#include "iterativeLA.cc"
-
-#include "iterativeLA.h"
 
 int main(void) {
   // Prompt user for size of matrix

@@ -3,6 +3,8 @@
 
 #include <math.h>
 #include "Matrix.h"
+#include "Vector.h"
+
 using namespace std;
 
 
@@ -139,7 +141,7 @@ std::istream& operator>> (std::istream& is, Matrix& m) {
   for(int i=0; i<m.n(0); i++)
     for(int j=0; j<m.n(1); j++)
       is >> m(i,j);
-    
+
   return is;
 } // std::istream& operator>> (std::istream& is, Matrix& m) {
 

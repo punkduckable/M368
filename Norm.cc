@@ -1,7 +1,10 @@
 #if !defined(NORM_SOURCE)
 #define NORM_SOURCE
 
+#include "Forward_Declarations.h"
 #include "Norm.h"
+#include "Vector.h"
+#include "Matrix.h"
 
 double Norm::l2(const Vector& v) {
   double norm = 0;
@@ -18,7 +21,7 @@ double Norm::max(const Vector& v) {
 
   for(int i=0; i<v.n(); i++) {
     double a = fabs(v(i));
-    
+
     if(norm < a)
       norm = a;
   } // for(int i=0; i<v.n(); i++) {
