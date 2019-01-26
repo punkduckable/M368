@@ -2,6 +2,7 @@
 #define MATRIX_HEADER
 
 #include <iostream>
+#include "Vector.h"
 
 class Matrix {
  private:

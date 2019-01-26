@@ -9,14 +9,6 @@ using namespace std;
 #include "Matrix.h"
 #include "Norm.h"
 #include "Vector.h"
-#include "Permutation.h"
-
-// Include Source files
-#include "iterativeLA.cc"
-#include "Matrix.cc"
-#include "Norm.cc"
-#include "Vector.cc"
-#include "Permutation.cc"
 
 int main(void) {
   // Prompt user for size of matrix
@@ -42,7 +34,7 @@ int main(void) {
   cout << "Enter maxIter and tolerance: " << flush;
   cin >> maxIter >> tolerance;
 
-  state s = jacobi(A,b,x,maxIter,tolerance);
+  state s = Gauss_Siedel(A,b,x,maxIter,tolerance);
 
   switch(s) {
   case WONT_STOP:

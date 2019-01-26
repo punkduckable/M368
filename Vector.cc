@@ -3,7 +3,8 @@
 
 #include "Vector.h"
 
-// Vector /////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Constructors
 
 Vector::Vector(const Vector& v) {
   size = v.size;
@@ -12,6 +13,35 @@ Vector::Vector(const Vector& v) {
   for(int i=0; i<size; i++)
     array[i] = v.array[i];
 } // Vector::Vector(const Vector& v) {
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Operator overloading
+
+Vector Vector::operator+(const Vector& v) {
+  if(size != v.size)
+    std::cerr << "Sizes differ in Vector::operator=(const Vector&)";
+
+  Vector Sum(v);
+
+  for(int i = 0; i < size; i++)
+    Sum(i) = array[i] + v(i);
+
+  return Sum;
+} // Vector Vector::operator+(const Vector& v) {
+
+
+Vector Vector::operator-(const Vector& v) {
+  if(size != v.size)
+    std::cerr << "Sizes differ in Vector::operator=(const Vector&)";
+
+  Vector Difference(v);
+
+  for(int i = 0; i < size; i++)
+    Difference(i) = array[i] - v(i);
+
+  return Difference;
+} // Vector Vector::operator-(const Vector& v) {
 
 
 Vector& Vector::operator=(const Vector& v) {
@@ -82,6 +112,9 @@ double Vector::operator*(const Vector& v) const {
   return dot;
 } // double Vector::operator*(const Vector& v) const {
 
+
+////////////////////////////////////////////////////////////////////////////////
+// Other vector methods 
 
 double scDot(const Vector& v1, const Vector& v2) {
   return v1*v2;

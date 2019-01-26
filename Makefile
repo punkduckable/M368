@@ -1,23 +1,29 @@
+# variables
+CC = c++
+CFLAGS = -c -Wall
+
+# Compile
 All: main.o Vector.o Matrix.o Permutation.o Norm.o iterativeLA.o
-	c++ -o Main main.o Vector.o Matrix.o Permutation.o Norm.o iterativeLA.o -Wall
+	$(CC) -o Main main.o Vector.o Matrix.o Permutation.o Norm.o iterativeLA.o -Wall
 
 main.o: main.cc
-	c++ -c main.cc
+	$(CC) $(CFLAGS) main.cc
 
 Vector.o: Vector.cc
-	c++ -c Vector.cc
+	$(CC) $(CFLAGS) Vector.cc
 
 Matrix.o: Matrix.cc
-	c++ -c Matrix.cc
+	$(CC) $(CFLAGS) Matrix.cc
 
 Permutation.o: Permutation.cc
-	c++ -c Permutation.cc
+	$(CC) $(CFLAGS) Permutation.cc
 
 Norm.o: Norm.cc
-	c++ -c Norm.cc
+	$(CC) $(CFLAGS) Norm.cc
 
 iterativeLA.o: iterativeLA.cc
-	c++ -c iterativeLA.cc
+	$(CC) $(CFLAGS) iterativeLA.cc
 
+# Clean
 clean:
-	rm -f *.o *~ iterativeLA
+	rm -f *.o *~ Main

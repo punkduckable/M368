@@ -1,7 +1,7 @@
 #if !defined(PERMUTATION_HEADER)
 #define PERMUTATION_HEADER
 
-#include "Forward_Declarations.h"
+#include "Vector.h"
 
 class Permutation {
  private:

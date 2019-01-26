@@ -2,7 +2,6 @@
 #define VECTOR_HEADER
 
 #include <iostream>
-#include "Forward_Declarations.h"
 
 class Vector {
  private:
@@ -20,6 +19,9 @@ class Vector {
      // access to return element of vector
   double& operator() (int i) { return array[i]; }
      // access to modify element of vector
+
+  Vector operator+(const Vector &);
+  Vector operator-(const Vector &);
 
   Vector& operator=(const Vector&);  // equate two vectors
   Vector& operator=(double);         // fill value into vector

@@ -2,6 +2,8 @@
 #define NORM_HEADER
 
 #include <math.h>
+#include "Vector.h"
+#include "Matrix.h"
 
 
 namespace Norm {
