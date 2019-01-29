@@ -9,7 +9,7 @@ using namespace std;
 #include "Vector.h"
 #include "Norm.h"
 
-//#define MONITOR
+#define MONITOR
 
 state jacobi(const Matrix & A, const Vector & b, Vector & x, int & maxIter, const double tol) {
 
@@ -40,7 +40,6 @@ state jacobi(const Matrix & A, const Vector & b, Vector & x, int & maxIter, cons
 
   Vector xOld(x);
 
-
   for(int iter=0; iter<maxIter; iter++) {
 
     // Get new x
@@ -60,7 +59,10 @@ state jacobi(const Matrix & A, const Vector & b, Vector & x, int & maxIter, cons
     double l2error = Norm::l2(xOld) / (Norm::l2(x)+1e-16);
 
 #ifdef MONITOR
-    cout << "Iter " << iter+1 << ", l2-error " << l2error << endl;
+		printf(    "Iteration: %d       ", iter+1);
+		printf(    "l2-Error = %6.2lf   ", l2error);
+		printf(    "x(%d) = ", iter+1);
+		x.Print();
 #endif
 
     if( l2error <= tol) {
@@ -101,44 +103,50 @@ state Gauss_Siedel(const Matrix & A, const Vector & b, Vector & x, int & maxIter
 	//////////////////////////////////////////////////////////////////////////////
   // APPLY Gauss Siedel method
 
-  Vector x_old(x);
+	Vector x_k_1(x);
 	Vector Difference(x);
 
-
-  for(int iter=0; iter<maxIter; iter++) {
+  for(int iter=0; iter < maxIter; iter++) {
 
     // Get new x
     for(int i=0; i<n; i++) {
       double sum = 0;
 
-			// Sum over the lower Triangular elemnets
+			// x(k)_i = (1/Aii)* { -(Sum( Aij*x(k)_j for 0 <= j < i) + Sum( Aij*x(k-1)_j for i+1 <= j < n)) + b(i)}
+
+			// Sum over the lower Triangular elements. (the contribution from x(k))
       for(int j = 0; j < i; j++)
 				sum += A(i,j)*x(j);
 
-			// Sum over the upper triangular elements
+			// Sum over the upper triangular elements. (the contributions from x(k-1))
 			for(int j = i+1; j < n; j++)
-				sum += A(i,j)*x_old(j);
+				sum += A(i,j)*x_k_1(j);
 
 			// Calculate new component of A
       x(i) = ( -sum + b(i) ) / A(i,i);
     } // for(int i=0; i<n; i++) {
 
-    // Check error tolerance
-    Difference = x_old - x;
+    // Calculate the error
+    Difference = x_k_1 - x;
     double l2error = Norm::l2(Difference) / (Norm::l2(x)+1e-16);
 
 #ifdef MONITOR
-    cout << "Iter " << iter+1 << ", l2-error " << l2error << endl;
+		printf(    "Iteration: %d       ", iter+1);
+		printf(    "l2-Error = %6.2lf   ", l2error);
+		printf(    "x(%d) = ", iter+1);
+		x.Print();
 #endif
 
+		// Test if the error is within the tolerance
     if( l2error <= tol) {
       maxIter = iter+1;
       return SUCCESS;
     } // if( l2error <= tol) {
 
-		// update x_old
-		x_old = x;
+		// Get ready for the next iteration
+		x_k_1 = x;
   } // for(int iter=0; iter<maxIter; iter++) {
+
 
   return WONT_STOP;
 } // state Gauss_Siedel(const Matrix & A, const Vector & b, Vector & x, int & maxIter, const double tol) {

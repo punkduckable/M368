@@ -26,20 +26,24 @@ class Vector {
   double operator()(const unsigned i) const;// access to return element of vector
   double& operator()(const unsigned i);     // access to modify element of vector
 
-
   //////////////////////////////////////////////////////////////////////////////
   // Arithmetic operator overloading
 
-  Vector& operator=(const Vector&);  // equate two vectors
-  Vector& operator=(double);         // fill value into vector
-  Vector operator+(const Vector &);  // Add two vectors
-  Vector operator-(const Vector &);  // Subtract two vectors
-  Vector& operator+=(const Vector&); // increment vector by another vector
-  Vector& operator-=(const Vector&); // decrement vector by another vector
-  Vector& operator*=(double);        // multiplication by a scalar
-  Vector& operator/=(double);        // division by a scalar
+  Vector& operator=(const Vector&);    // equate two vectors
+  Vector& operator=(double);           // fill value into vector
+  Vector operator+(const Vector &);    // Add two vectors
+  Vector operator-(const Vector &);    // Subtract two vectors
+  Vector& operator+=(const Vector&);   // increment vector by another vector
+  Vector& operator-=(const Vector&);   // decrement vector by another vector
+  Vector& operator*=(double);          // multiplication by a scalar
+  Vector& operator/=(double);          // division by a scalar
 
   double operator*(const Vector& v) const; // scalar dot product
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Other methods
+
+  void Print(void);                    // Print out the contents of the vector
 }; // class Vector {
 
 // Scalar dot product of vectors

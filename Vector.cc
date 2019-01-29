@@ -156,6 +156,18 @@ double Vector::operator*(const Vector& v) const {
 ////////////////////////////////////////////////////////////////////////////////
 // Other vector methods
 
+void Vector::Print(void) {
+  printf("< ");
+  for(int i = 0; i < size; i++)
+    printf("%lf ", array[i]);
+    
+  printf(" >\n");
+} // void Vector::Print(void) {
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Other vector function
+
 double scDot(const Vector& v1, const Vector& v2) {
   return v1*v2;
 } // double scDot(const Vector& v1, const Vector& v2) {
