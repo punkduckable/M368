@@ -34,7 +34,11 @@ int main(void) {
   cout << "Enter maxIter and tolerance: " << flush;
   cin >> maxIter >> tolerance;
 
-  state s = Gauss_Siedel(A,b,x,maxIter,tolerance);
+  double w;
+  cout << "Enter relaxation parameter: " << flush;
+  cin >> w;
+
+  state s = SOR(A,b,x,maxIter,tolerance,w);
 
   switch(s) {
   case WONT_STOP:
@@ -43,6 +47,8 @@ int main(void) {
   case BAD_DIAGONAL:
     cout << "ERROR: A diagonal entry of A was 0." << endl;
     return 1;
+  case BAD_DATA:
+    cout << "ERROR: bad data!" << endl;
   default:
     cout << "ERROR: Unspecified." << endl;
     return 1;
