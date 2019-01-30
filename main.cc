@@ -30,9 +30,9 @@ int main(void) {
 
   // Check that A is diagionally dominant
   if(Is_Strictly_Diag_Dom(A))
-    printf("A is strictly diagionally dominant.\n");
+    printf("A is strictly diagonally dominant.\n");
   else
-    printf("Warning! A is not strictly diagionally dominant. Iterative methods may diverge\n");
+    printf("Warning! A is not strictly diagonally dominant. Iterative methods may diverge\n");
 
   // Prompt user to enter b
   cout << "Enter b: " << flush;
