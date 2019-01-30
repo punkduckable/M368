@@ -44,6 +44,7 @@ class Matrix {
   unsigned n(const unsigned i) const;
 }; // class Matrix {
 
+bool Is_Strictly_Diag_Dom(const Matrix & A);
 int matVecMult(const Matrix& M, const Vector& x, Vector& y); // y = Mx
 int matMatMult(const Matrix& A, const Matrix& B, Matrix& C); // C = AB
 

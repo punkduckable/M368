@@ -192,6 +192,34 @@ Matrix Matrix::operator*(const Matrix& B) {
 ////////////////////////////////////////////////////////////////////////////////
 // Other matrix methods
 
+bool Is_Strictly_Diag_Dom(const Matrix & A) {
+  // Cycle through the rows of A
+  const unsigned rows = A.n(0);
+  for(int i = 0; i < rows; i++) {
+    // Get the diagional element
+    const double M_ii = fabs(A(i,i));
+
+
+    // Compute the sum of the magnitude of the off diagional elements
+    double Sum_Off_Diag = 0;
+
+    const unsigned cols = A.n(1);
+    for(int j = 0; j < cols; j++)  {
+      if(i==j)
+        continue;
+      Sum_Off_Diag += fabs(A(i,j));
+    } // for(int j = 0; j < cols; j++)  {
+
+    // Check if this row is not diagionally dominant. If so then return
+    if(M_ii <= Sum_Off_Diag)
+      return false;
+  } // for(int i = 0; i < rows, i++) {
+
+  // If we got here then the matrix must be diagionally dominant
+  return true;
+} // bool Is_Strictly_Diag_Dom(const Matrix & A) {
+
+
 unsigned Matrix::n(const unsigned i) const {
   if(i >= 2) {
     printf("Requested dimension %d but matricies only have 2 dimensions (rows/cols)\n", i);

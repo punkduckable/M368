@@ -11,7 +11,7 @@ using namespace std;
 
 #define MONITOR
 
-state jacobi(const Matrix & A, const Vector & b, Vector & x, int & maxIter, const double tol) {
+state Jacobi(const Matrix & A, const Vector & b, Vector & x, int & maxIter, const double tol) {
 
   //////////////////////////////////////////////////////////////////////////////
   // CHECK DATA
@@ -79,7 +79,9 @@ state jacobi(const Matrix & A, const Vector & b, Vector & x, int & maxIter, cons
   } // for(int iter=0; iter<maxIter; iter++) {
 
   return WONT_STOP;
-} // state jacobi(const Matrix & A, const Vector & b, Vector & x, int & maxIter, const double tol) {
+} // state Jacobi(const Matrix & A, const Vector & b, Vector & x, int & maxIter, const double tol) {
+
+
 
 
 state Gauss_Siedel(const Matrix & A, const Vector & b, Vector & x, int & maxIter, const double tol) {
@@ -162,6 +164,8 @@ state Gauss_Siedel(const Matrix & A, const Vector & b, Vector & x, int & maxIter
 
   return WONT_STOP;
 } // state Gauss_Siedel(const Matrix & A, const Vector & b, Vector & x, int & maxIter, const double tol) {
+
+
 
 
 

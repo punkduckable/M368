@@ -21,24 +21,54 @@ int main(void) {
   Vector x(n);
   Vector b(n);
 
+  // Initialize x to 0 (this is the first term in the seuence (x(k)))
   x = 0;
 
+  // Prompt user to enter A
   cout << "Enter A by rows: " << flush;
   cin >> A;
 
+  // Check that A is diagionally dominant
+  if(Is_Strictly_Diag_Dom(A))
+    printf("A is strictly diagionally dominant.\n");
+  else
+    printf("Warning! A is not strictly diagionally dominant. Iterative methods may diverge\n");
+
+  // Prompt user to enter b
   cout << "Enter b: " << flush;
   cin >> b;
 
+  // Prompt user for maxIter and tolerance
   int maxIter;
   double tolerance;
   cout << "Enter maxIter and tolerance: " << flush;
   cin >> maxIter >> tolerance;
 
-  double w;
-  cout << "Enter relaxation parameter: " << flush;
-  cin >> w;
+  // Prompt user for method
+  enum Methods{JACOBI = 1, GAUSS_SIEDEL = 2, SUCCESSIVE_OVER_RELAXATION = 3};
+  unsigned Choice = 0;
+  printf("Pick a method:\n%d - Jacobi\n%d - Gauss-Siedel\n%d - Successive Over Relaxation\n: ", JACOBI, GAUSS_SIEDEL, SUCCESSIVE_OVER_RELAXATION);
+  cin >> Choice;
 
-  state s = SOR(A,b,x,maxIter,tolerance,w);
+  // Now, depending on choice, perform iterative method
+  state s;
+  if(Choice == JACOBI)
+    s = Jacobi(A,b,x,maxIter,tolerance);
+  else if(Choice == GAUSS_SIEDEL)
+    s = Gauss_Siedel(A,b,x,maxIter,tolerance);
+  else if(Choice == SUCCESSIVE_OVER_RELAXATION) {
+    // Prompt user for relaxation parameter
+    double w;
+    cout << "Enter relaxation parameter: " << flush;
+    cin >> w;
+
+    // Now perform SOR method
+    s = SOR(A,b,x,maxIter,tolerance,w);
+  } // else if(Choice == SUCCESSIVE_OVER_RELAXATION) {
+  else {
+    printf("Invalid choice. Using Jacobi\n");
+    s = Jacobi(A,b,x,maxIter,tolerance);
+  } // else {
 
   switch(s) {
   case WONT_STOP:
@@ -64,5 +94,5 @@ int main(void) {
     cout << "The residual is: " << endl;
     cout << y << endl;
     return 0;
-  }
-}
+  } // switch(s) {
+} // int main(void) {
