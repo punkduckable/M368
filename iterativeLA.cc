@@ -199,10 +199,10 @@ state SOR(const Matrix & A, const Vector & b, Vector & x, int & maxIter, const d
 			return BAD_DIAGONAL;
 
 	// Check for appaopiate relaxation parameter. Must have w >= 1 for SOR
-	if(w < 1) {
-		printf("Error! Relaxation paramater (w) must be > 1\n");
+	if(w < 0 || w > 2) {
+		printf("Error! Relaxation paramater, w, must be in (0,2)\n");
 		return BAD_DATA;
-	} // if(w < 1) {
+	} // if(w < 0 || w > 2) {
 
 
 	//////////////////////////////////////////////////////////////////////////////
